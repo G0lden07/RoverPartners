@@ -91,7 +91,11 @@ public class Startup
             config.IsDismissable = true;
             config.Position = NotyfPosition.BottomRight;
         });
-        services.AddOpenAIService();
+        services.AddOpenAIService(options =>
+        {
+            options.ApiKey = _configuration["OpenAI:ApiKey"]
+                ?? Environment.GetEnvironmentVariable("OpenAI__ApiKey");
+        });
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

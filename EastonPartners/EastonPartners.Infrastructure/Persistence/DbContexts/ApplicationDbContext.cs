@@ -85,12 +85,12 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, Applicati
 
     public override int SaveChanges()
     {
-	    return _helper.SaveChanges(_auditContext, () => base.SaveChanges());
+        return _helper.SaveChanges(_auditContext, () => base.SaveChanges());
     }
 
-    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken))
+    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
-	    return await _helper.SaveChangesAsync(_auditContext, () => base.SaveChangesAsync(cancellationToken));
+        return await _helper.SaveChangesAsync(_auditContext, () => base.SaveChangesAsync(cancellationToken));
     }
 }
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
